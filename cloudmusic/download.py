@@ -2,6 +2,7 @@ from . import musicObj
 
 import urllib
 import os
+import re
 import threadpool
 import time
 
@@ -14,7 +15,9 @@ def download(dirs, music):
 		artist = ""
 		for ar in music.artist:
 			artist += ar + " "
-	name = music.name + " - " + artist + "." + music.type
+# 	name = music.name + " - " + artist + "." + music.type
+	rstr = r"[\/\\\:\*\?\"\<\>\|]"  # '/ \ : * ? " < > |'
+	name = re.sub(rstr,' ',music.name + " - " + artist + "." + music.type)
 
 	if not dirs:
 		dirs = "cloudmusic\\" + name
