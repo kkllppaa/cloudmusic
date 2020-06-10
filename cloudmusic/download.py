@@ -23,6 +23,9 @@ def download(dirs, music):
 		if not isExist:
 			os.makedirs(defalut_dirs)
 	else :
+		isExist = os.path.exists(dirs)
+		if not isExist:
+			os.makedirs(dirs)
 		dirs += "\\" + name
 
 	# 超时重连
